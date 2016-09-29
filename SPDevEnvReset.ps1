@@ -1,6 +1,17 @@
 # Reset SharePoint development environment
 # github.com/jyarbro/SPDevEnvReset
 
+$CurrentPrincipal = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
+$IsAdmin = ($CurrentPrincipal).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+
+If (-NOT $IsAdmin) {
+	Write-Host -foregroundcolor Red "Restarting with admin credentials"
+
+	$Arguments = "& '" + $myinvocation.mycommand.definition + "'"
+	Start-Process powershell -Verb runAs -ArgumentList $Arguments
+	Break
+}
+
 Write-Host ""
 Write-Host -foregroundcolor White "Reset SharePoint development environment"
 
