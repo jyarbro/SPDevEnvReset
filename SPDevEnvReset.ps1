@@ -1,4 +1,5 @@
 # Reset SharePoint development environment
+# github.com/jyarbro/SPDevEnvReset
 
 Write-Host ""
 Write-Host -foregroundcolor White "Reset SharePoint development environment"
