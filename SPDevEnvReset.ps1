@@ -1,4 +1,5 @@
 # Reset SharePoint development environment
+# Keep up with changes @ github.com/jyarbro/SPDevEnvReset
 
 $CurrentPrincipal = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
 $IsAdmin = ($CurrentPrincipal).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
