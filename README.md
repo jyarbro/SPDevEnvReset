@@ -7,7 +7,7 @@
 4. Tell the script which level of reset you want to do. Refer to the source to see what each level consists of.
 
 ###Optional steps
-You can use the shortcut (.lnk) I provided and update the path to whereever you put the script. You can place this shortcut in your start menu to make it really easy to run.
+You can use the shortcut (.lnk) I provided and update the path to wherever you put the script. You can place this shortcut in your start menu to make it really easy to run.
 
 If you are working with timer jobs, I suggest that beyond this script, you also reset the timer job after every deployment. To do this, go into your SharePoint deployment project, open the project properties, navigate to the SharePoint tab, and then set the post-deployment step to:
 
