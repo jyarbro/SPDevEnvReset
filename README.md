@@ -16,7 +16,7 @@ If you are working with timer jobs, I suggest that beyond this script, you also 
 `net start sptimerv4`
 
 ##Why did you make this?
-[This StackExchange](https://sharepoint.stackexchange.com/questions/23908/deploying-eventreceiver-project-with-target-of-webapplication-from-vs-fails-when/195200) issue was really starting to annoy me so I had to come up with some way of scripting this.
+[This StackExchange](http://sharepoint.stackexchange.com/a/195200/41382) issue was really starting to annoy me so I had to come up with some way of scripting this.
 
 There are still times that my SharePoint environment gets confused and I need to manually retract the solution in Visual Studio prior to running the reset script. At least twice a week I'm happy I have this script around. It gets that crazy when you're developing timer jobs!
 
