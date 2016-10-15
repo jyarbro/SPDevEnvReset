@@ -16,7 +16,7 @@ If you are working with timer jobs, I suggest that beyond this script, you also 
 `net start sptimerv4`
 
 ##Why did you make this?
-[This StackExchange](http://sharepoint.stackexchange.com/a/195200/41382) issue was really starting to annoy me so I had to come up with some way of scripting this.
+[This StackExchange](https://sharepoint.stackexchange.com/a/195200/41382) issue was really starting to annoy me so I had to come up with some way of scripting this.
 
 There are still times that my SharePoint environment gets confused and I need to manually retract the solution in Visual Studio prior to running the reset script. At least twice a week I'm happy I have this script around. It gets that crazy when you're developing timer jobs!
 
@@ -24,3 +24,8 @@ There are still times that my SharePoint environment gets confused and I need to
 I am using this on a SharePoint 2016 environment with Visual Studio 2015. I see absolutely no reason why this exact script should not work on other versions of those, going back at least to SP 2010.
 
 You will need at least PowerShell 4 as the self-elevating commands require that.
+
+##I'm still having problems deploying!
+This isn't a silver bullet. You'll still need to earn your paycheck, unfortunately. I wish PowerShell was powerful enough to replace me sometimes.
+
+If you're having issues related to that StackExchange link above, make sure all your Elements.xml files have the right namespace. If you're having other issues, I cannot recommend [SharePoint.StackExchange.com](https://sharepoint.stackexchange.com) enough. Start a new thread, and start a discussion here on my repository with your specific issue so I can see if I can integrate the solution into this script.
