@@ -25,9 +25,11 @@ There are still times that my SharePoint environment gets confused and I need to
 
 ### What do I need to run this?
 
-I am using this on a SharePoint 2016 environment with Visual Studio 2015. I see absolutely no reason why this exact script should not work on other versions of those, going back at least to SP 2010.
+You will need at least PowerShell 4 as the self-elevating commands require that. If you comment out that line then you should be good with PowerShell 2.
 
-You will need at least PowerShell 4 as the self-elevating commands require that.
+It has been tested with the following configurations:
+Visual Studio 2013 / 2015 / 2017
+SharePoint 2010 / 2013 / 2016
 
 ### I'm still having problems deploying!
 
