@@ -56,7 +56,7 @@ function StopServices() {
 
 function StartServices() {
 	Write-Host ""
-    Write-Host -foregroundcolor Red "Starting services"
+        Write-Host -foregroundcolor Red "Starting services"
 	
 	# World Wide Web Publishing Service (inherently starts IIS)
 	net start W3SVC
