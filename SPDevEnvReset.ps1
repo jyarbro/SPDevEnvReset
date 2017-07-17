@@ -1,4 +1,6 @@
 # Reset SharePoint development environment
+# Uncomment services below as appropriate.
+#
 # Keep up with changes @ github.com/jyarbro/SPDevEnvReset
 
 $CurrentPrincipal = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
@@ -12,24 +14,8 @@ If (-NOT $IsAdmin) {
 	Break
 }
 
-function CompleteReset() {
-    Write-Host ""
-    Write-Host -foregroundcolor Red "Stopping services"
-
-    net stop WAS /y
-    iisreset /stop
-
-    net stop SPAdminV4
-    net stop SPTimerV4
-    net stop SPUserCodeV4
-
-    Write-Host ""
-    Write-Host -foregroundcolor Red "Ending Visual Studio SharePoint Host"
-    Write-Host ""
-
-    taskkill /im vssphost*
-
-    Write-Host ""
+function FlushCache() {
+	Write-Host ""
     Write-Host -foregroundcolor Yellow "Deleting xml files from config cache"
 
     $path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\*.xml"
@@ -40,52 +26,54 @@ function CompleteReset() {
 
     $path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\cache.ini"
     Set-Content -path $path -Value "1"
-
-    Write-Host -foregroundcolor Green "Starting services"
-    
-    net start SPUserCodeV4
-    net start SPTimerV4
-    net start SPAdminV4
-
-    net start W3SVC
 }
 
-function ResetIIS() {
-    net stop WAS /y
+function StopServices() {
+	Write-Host ""
+    Write-Host -foregroundcolor Red "Stopping services"
 
-    net stop SPTimerV4
-    net stop SPUserCodeV4
-    net stop SPAdminV4
+	#net stop SPSearchHostCont
+	#net stop OSearch16
+    #net stop SPUserCodeV4
 
-    net start SPUserCodeV4
-    net start SPTimerV4
-    net start SPAdminV4
+	net stop SPAdminV4
+	net stop SPTimerV4
+	net stop SPTraceV4
+	
+	#net stop MSSQLSERVER
+	#net stop SQLTELEMETRY
+	#net stop SQLWriter
 
-    net start W3SVC
+	# IIS
+	iisreset /stop
+	
+	# Windows Process Activation Service
+	net stop WAS /y
+
+	# Visual Studio SharePoint Host
+	taskkill /im vssphost*
 }
 
-function ResetSPServices() {
-    net stop SPTimerV4
-    net stop SPUserCodeV4
-    net stop SPAdminV4
+function StartServices() {
+	Write-Host ""
+    Write-Host -foregroundcolor Red "Starting services"
+	
+	# World Wide Web Publishing Service (inherently starts IIS)
+	net start W3SVC
 
-    net start SPTimerV4
-    net start SPUserCodeV4
-    net start SPAdminV4
+	#net start MSSQLSERVER
+	#net start SQLTELEMETRY
+	#net start SQLWriter
+
+	net start SPTraceV4
+	net start SPTimerV4
+	net start SPAdminV4
+
+	#net start SPSearchHostController
+	#net start OSearch16
+	#net start SPUserCodeV4
 }
 
-Write-Host "1: Reset SharePoint Services"
-Write-Host "2: Reset IIS & SharePoint Services"
-Write-Host "3: Complete development environment reset"
-Write-Host ""
-
-$ProcessId = Read-Host -Prompt "Select a process (default 1): "
-
-Clear-Host
-
-switch($ProcessId) {
-    default { ResetSPServices }
-    "1" { ResetSPServices }
-    "2" { ResetIIS }
-    "3" { CompleteReset }
-}
+StopServices
+FlushCache
+StartServices
