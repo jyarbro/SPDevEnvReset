@@ -27,8 +27,12 @@ There are still times that my SharePoint environment gets confused and I need to
 You will need at least PowerShell 4 as the self-elevating commands require that. If you comment out that line then you should be good with PowerShell 2.
 
 It has been tested with the following configurations:
+
 Visual Studio 2013 / 2015 / 2017
+
 SharePoint 2010 / 2013 / 2016
+
+Though there are some commented services that if uncommented will probably require SP 2016.
 
 ### I'm still having problems deploying!
 
