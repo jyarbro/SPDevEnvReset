@@ -16,13 +16,10 @@ If (-NOT $IsAdmin) {
 
 function FlushCache() {
 	Write-Host ""
-	Write-Host -foregroundcolor Yellow "Deleting xml files from config cache"
+	Write-Host -foregroundcolor Yellow "Flushing config cache"
 
 	$path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\*.xml"
 	Remove-Item -path $path -Force
-
-	Write-Host ""
-	Write-Host -foregroundcolor Yellow "Clearing timer cache"
 
 	$path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\cache.ini"
 	Set-Content -path $path -Value "1"
