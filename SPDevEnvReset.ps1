@@ -14,13 +14,14 @@ If (-NOT $IsAdmin) {
 
 function CompleteReset() {
     Write-Host ""
-    Write-Host -foregroundcolor Red "Completely resetting dev environment"
+    Write-Host -foregroundcolor Red "Stopping services"
 
     net stop WAS /y
+    iisreset /stop
 
+    net stop SPAdminV4
     net stop SPTimerV4
     net stop SPUserCodeV4
-
 
     Write-Host ""
     Write-Host -foregroundcolor Red "Ending Visual Studio SharePoint Host"
@@ -40,8 +41,11 @@ function CompleteReset() {
     $path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\cache.ini"
     Set-Content -path $path -Value "1"
 
+    Write-Host -foregroundcolor Green "Starting services"
+    
     net start SPUserCodeV4
     net start SPTimerV4
+    net start SPAdminV4
 
     net start W3SVC
 }
@@ -51,9 +55,11 @@ function ResetIIS() {
 
     net stop SPTimerV4
     net stop SPUserCodeV4
+    net stop SPAdminV4
 
     net start SPUserCodeV4
     net start SPTimerV4
+    net start SPAdminV4
 
     net start W3SVC
 }
@@ -61,9 +67,11 @@ function ResetIIS() {
 function ResetSPServices() {
     net stop SPTimerV4
     net stop SPUserCodeV4
+    net stop SPAdminV4
 
     net start SPTimerV4
     net start SPUserCodeV4
+    net start SPAdminV4
 }
 
 Write-Host "1: Reset SharePoint Services"
