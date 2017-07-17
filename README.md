@@ -2,7 +2,7 @@
 
 ### How?
 
-1. **Read the source** for the PS1 script. I could be a very terrible person trying to hax your boxen.
+1. **Read the source** for the PS1 script. I could be a very terrible script kiddie trying to hax yoo, or worse, I could be incompetent.
 2. Download the PS1 script and drop it somewhere. Anywhere. I have mine off the C root because I am a terrible person.
 3. Run the PS1 script in powershell. It will spawn an elevated shell if you did not already run it as such, and UAC will ask you for permission to do that.
 4. Tell the script which level of reset you want to do. Refer to the source to see what each level consists of.
