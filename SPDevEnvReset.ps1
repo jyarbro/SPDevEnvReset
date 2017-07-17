@@ -16,25 +16,25 @@ If (-NOT $IsAdmin) {
 
 function FlushCache() {
 	Write-Host ""
-    Write-Host -foregroundcolor Yellow "Deleting xml files from config cache"
+	Write-Host -foregroundcolor Yellow "Deleting xml files from config cache"
 
-    $path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\*.xml"
-    Remove-Item -path $path -Force
+	$path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\*.xml"
+	Remove-Item -path $path -Force
 
-    Write-Host ""
-    Write-Host -foregroundcolor Yellow "Clearing timer cache"
+	Write-Host ""
+	Write-Host -foregroundcolor Yellow "Clearing timer cache"
 
-    $path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\cache.ini"
-    Set-Content -path $path -Value "1"
+	$path = "C:\ProgramData\Microsoft\SharePoint\Config\*-*\cache.ini"
+	Set-Content -path $path -Value "1"
 }
 
 function StopServices() {
 	Write-Host ""
-    Write-Host -foregroundcolor Red "Stopping services"
+	Write-Host -foregroundcolor Red "Stopping services"
 
 	#net stop SPSearchHostCont
 	#net stop OSearch16
-    #net stop SPUserCodeV4
+	#net stop SPUserCodeV4
 
 	net stop SPAdminV4
 	net stop SPTimerV4
@@ -56,7 +56,7 @@ function StopServices() {
 
 function StartServices() {
 	Write-Host ""
-        Write-Host -foregroundcolor Red "Starting services"
+	Write-Host -foregroundcolor Red "Starting services"
 	
 	# World Wide Web Publishing Service (inherently starts IIS)
 	net start W3SVC
